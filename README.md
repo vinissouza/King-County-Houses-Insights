@@ -20,10 +20,16 @@ what would be the sale price?
 suggestions for changes? What is the price increase given for each refurbishment
 option?
 
-All context about this project is completely fictitious, including company, CEO 
+All the context about this project is completely fictitious, including company, CEO 
 and business issues.
 
 ## Business Assumptions
+The assumptions about the business problem is as follow:
+- The costs of maintaining the business are not considered when calculating the company's profit.
+- Seasons interfere in houses price.
+- Renovations can only be considered to add or remove rooms.
+- House conditions are not altered by renovations.
+- Costs for renovations are not considered when calculating the profit form the sale of houses.
 
 ## Solution Strategy
 
