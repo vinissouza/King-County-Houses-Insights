@@ -32,6 +32,25 @@ The assumptions about the business problem is as follow:
 - Costs for renovations are not considered when calculating the profit form the sale of houses.
 
 ## Solution Strategy
+Hypothesis 01: Houses with a water view are 30% more expensive, in average.
+
+True/False:
+
+Hypothesis 02: Houses with a construction date less than 1955 are 50% cheaper, in average.
+
+True/False:
+
+Hypothesis 03: Houses without a basement have a lot size 50% larger than those with a basement.
+
+True/False:
+
+Hypothesis 04: The YoY (Year over Year) house price growth is 10%.
+
+True/False:
+
+Hypothesis 05: Houses with 3 bathrooms have a MoM (Month over Month) growth of 15%.
+
+True/False:
 
 ## Main Data Insights
 
