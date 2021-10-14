@@ -32,6 +32,8 @@ The assumptions about the business problem is as follow:
 - Costs for renovations are not considered when calculating the profit form the sale of houses.
 
 ## Solution Strategy
+
+## Main Data Insights]
 Hypothesis 01: Houses with a water view are 30% more expensive, in average.
 
 True/False:
@@ -51,8 +53,6 @@ True/False:
 Hypothesis 05: Houses with 3 bathrooms have a MoM (Month over Month) growth of 15%.
 
 True/False:
-
-## Main Data Insights
 
 ## Machine Learning Model Applied
 
