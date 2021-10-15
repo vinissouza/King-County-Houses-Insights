@@ -33,7 +33,18 @@ The assumptions about the business problem is as follow:
 
 ## Solution Strategy
 
-## Main Data Insights]
+<details>
+<summary>Which houses should the company buy and at what price?</summary>
+
+- et01: coletar dados do site do kaggle.
+- et02: agrupar os dados por região (zipcode).
+- et03: dentro de cada região, encontrar a mediana do preço dos imóveis.
+- sugerir que os imóveis que estão abaixo do preço mediano de cada região
+e que estejam em boas condições, sejam comprado.
+
+</details>
+
+## Main Data Insights
 Hypothesis 01: Houses with a water view are 30% more expensive, in average.
 
 True/False:
