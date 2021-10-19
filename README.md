@@ -32,6 +32,8 @@ The assumptions about the business problem is as follow:
 - Costs for renovations are not considered when calculating the profit form the sale of houses.
 
 ## Solution Strategy
+This project was developed based on the CRISP-DS (Cross-Industry Standard Process - Data Science, 
+a.k.a. CRISP-DM) project management method. 
 
 <details>
 <summary>Which houses should the company buy and at what price?</summary>
