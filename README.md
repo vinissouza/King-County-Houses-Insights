@@ -33,18 +33,17 @@ The assumptions about the business problem is as follow:
 
 ## Solution Strategy
 This project was developed based on the CRISP-DS (Cross-Industry Standard Process - Data Science, 
-a.k.a. CRISP-DM) project management method. 
-
-<details>
-<summary>Which houses should the company buy and at what price?</summary>
-
-- et01: coletar dados do site do kaggle.
-- et02: agrupar os dados por região (zipcode).
-- et03: dentro de cada região, encontrar a mediana do preço dos imóveis.
-- sugerir que os imóveis que estão abaixo do preço mediano de cada região
-e que estejam em boas condições, sejam comprado.
-
-</details>
+a.k.a. CRISP-DM) project management method, applied according to the steps bellow:
+- **Data Description:** Use descriptive statistic to understand data and identify possible errors and data outside the 
+scope of project.
+- **Data Filtering:** Filter rows and delete columns that are not relevant or are not part of the project scope.
+- **Data Transformation:** Transform attribute types, so they can be used in the project scope.
+- **Feature Engineering:** Derive new attributes based on the original variables to better describe the sales that 
+will be explored.
+- **Exploratory Data Analysis:** Explore the data to generate a list of hypothesis that will be the basis for business 
+insights and better understand the impact of insights on the answers to business questions.
+- **Deploy Model to Production:** Publish a dashboard with the analysis and conclusions in a cloud environment so that 
+other people or services can use the results to improve their business decisions.
 
 ## Main Data Insights
 Hypothesis 01: Houses with a water view are 30% more expensive, in average.
