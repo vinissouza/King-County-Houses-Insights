@@ -2,6 +2,7 @@
 
 Formulation and validation of hypothesis about housing market in King County, WA, through exploratory data analysis.
 
+
 ## Business Problem
 House Rocket is a digital platform that uses technology to simplify the sale
 and purchase of real estate in King County, Washington State.
