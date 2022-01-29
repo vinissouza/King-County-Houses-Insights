@@ -521,7 +521,7 @@ def purchase_recommendations():
     return df
 
 def sell_recommendations(df):
-    st.title('TAble with Sell Price and Date Recommendations')
+    st.title('Table with Sell Price and Date Recommendations')
 
     # select data
     df2 = df.copy()
@@ -534,7 +534,7 @@ def sell_recommendations(df):
     df2['price_suggest'] = df2[['price', 'season_price']].apply(
         lambda x: 1.3*x['price'] if x['price'] < x['season_price'] else 1.1*x['price'], axis=1 )
 
-    st.table( df2 )
+    st.dataframe( df2 )
 
     return None
 
@@ -564,9 +564,7 @@ def refurbishment_suggests():
 
     df4 = df3[['id', 'final_price', 'suggest_basement', 'bathrooms', 'suggest_bathrooms', 'bedrooms', 'suggest_bedrooms']]
 
-    st.table( df4 )
-
-
+    st.dataframe( df4 )
 
     return None
 
