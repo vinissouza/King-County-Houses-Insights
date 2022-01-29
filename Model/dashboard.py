@@ -490,11 +490,12 @@ def purchase_recommendations():
 
     # select data
     cols = ['id', 'date', 'price', 'waterfront', 'condition', 'zipcode']
-    df = data['cols']
+    df = data[cols]
 
     # create season feature
     season = {1:'winter', 2:'winter', 3:'winter', 4:'summer', 5:'summer', 6:'summer',
               7:'summer', 8:'summer', 9:'summer', 10:'winter', 11:'winter', 12:'winter'}
+    df['date'] = pd.to_datetime(df['date'])
     df['season'] = df['date'].dt.month.map( season )
 
     aux2 = df[['season', 'price', 'zipcode']].groupby( ['zipcode', 'season'] ).mean().reset_index()
@@ -502,19 +503,68 @@ def purchase_recommendations():
     df1 = df.merge( aux2, on=['zipcode', 'season'] )
 
     df1['price_suggest'] = df1[['price', 'season_price']].apply(
-        lambda x: 1.1*x['price'] if ( x['price'] < x['mean_price'] ) &
-                                    ( x['condition'] > 3 ) &
-                                    ( x['waterfront'] == 1 ) else 'reject', axis=1 )
+        lambda x: 1.1*x['price'] if  x['price'] >= x['season_price'] else 1.3*x['price'], axis=1 )
 
-    aux = df[['price', 'zipcode']].groupby
+    aux = df[['price', 'zipcode']].groupby( 'zipcode' ).mean().reset_index()
+    aux.rename( columns={'price':'mean_price'}, inplace=True )
+    df = df.merge( aux, on='zipcode' )
 
-    return None
+    df['status'] = df[['mean_price', 'price', 'condition', 'waterfront']].apply(
+        lambda x: 'accept' if ( x['price'] < x['mean_price'] ) &
+                              ( x['condition'] > 3 ) &
+                              ( x['waterfront'] == 1 ) else 'reject', axis=1 )
 
-def sell_recommendations():
+    df = df[df['status'] == 'accept']
+
+    st.table( df )
+
+    return df
+
+def sell_recommendations(df):
+    st.title('Table with Sell Price and Date Recommendations')
+
+    # select data
+    df2 = df.copy()
+
+    aux1 = df2[['price', 'zipcode', 'season']].groupby( ['zipcode', 'season'] ).mean().reset_index()
+    aux1 = aux1.rename( columns={'price':'season_price'} )
+
+    df2 = df2.merge( aux1, on=['zipcode', 'season'], how='left' )
+
+    df2['price_suggest'] = df2[['price', 'season_price']].apply(
+        lambda x: 1.3*x['price'] if x['price'] < x['season_price'] else 1.1*x['price'], axis=1 )
+
+    st.dataframe( df2 )
 
     return None
 
 def refurbishment_suggests():
+    st.title('Table with Renovations Suggestions and the Increase Price')
+
+    # select data
+    df3 = data.loc[data['yr_renovated'] == 0,
+                   ['id', 'price', 'bedrooms', 'bathrooms', 'sqft_basement', 'yr_renovated']]
+
+    # basement
+    df3['basement'] = data['sqft_basement'].apply(lambda x: 'no' if x == 0 else 'yes')
+    df3['increase_basement'] = df3[['basement', 'price']].apply(lambda x: 0.50 * x['price'] if x['basement'] else 0, axis=1)
+    df3['suggest_basement'] = df3['basement'].apply(lambda x: 'yes' if x == 'no' else 'no')
+
+    # bathrooms
+    df3['increase_bathrooms'] = df3[['bathrooms', 'price']].apply( lambda x: 0.40*x['price'] if x['bathrooms'] < 4 else 0, axis=1 )
+    df3['suggest_bathrooms'] = df3['bathrooms'].apply( lambda x: x+1 if x < 4 else x )
+
+    # bedrooms
+    df3['increase_bedrooms'] = df3[['bedrooms', 'price']].apply( lambda x: 0.25*x['price'] if x['bedrooms'] < 5 else 0, axis=1 )
+    df3['suggest_bedrooms'] = df3['bedrooms'].apply( lambda x: x+1 if x < 5 else x )
+
+    # final price
+    df3['final_increase'] = df3['increase_basement'] + df3['increase_bathrooms'] + df3['increase_bedrooms']
+    df3['final_price'] = df3['price'] + df3['final_increase']
+
+    df4 = df3[['id', 'final_price', 'suggest_basement', 'bathrooms', 'suggest_bathrooms', 'bedrooms', 'suggest_bedrooms']]
+
+    st.dataframe( df4 )
 
     return None
 
@@ -537,6 +587,12 @@ if __name__ == '__main__':
     data = set_feature( data )
 
     # load
+    df = purchase_recommendations()
+
+    sell_recommendations(df)
+
+    refurbishment_suggests()
+
     insights()
 
     hypothesis()
