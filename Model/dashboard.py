@@ -518,13 +518,55 @@ def purchase_recommendations():
 
     st.table( df )
 
-    return None
+    return df
 
-def sell_recommendations():
+def sell_recommendations(df):
+    st.title('TAble with Sell Price and Date Recommendations')
+
+    # select data
+    df2 = df.copy()
+
+    aux1 = df2[['price', 'zipcode', 'season']].groupby( ['zipcode', 'season'] ).mean().reset_index()
+    aux1 = aux1.rename( columns={'price':'season_price'} )
+
+    df2 = df2.merge( aux1, on=['zipcode', 'season'], how='left' )
+
+    df2['price_suggest'] = df2[['price', 'season_price']].apply(
+        lambda x: 1.3*x['price'] if x['price'] < x['season_price'] else 1.1*x['price'], axis=1 )
+
+    st.table( df2 )
 
     return None
 
 def refurbishment_suggests():
+    st.title('Table with Renovations Suggestions and the Increase Price')
+
+    # select data
+    df3 = data.loc[data['yr_renovated'] == 0,
+                   ['id', 'price', 'bedrooms', 'bathrooms', 'sqft_basement', 'yr_renovated']]
+
+    # basement
+    df3['basement'] = data['sqft_basement'].apply(lambda x: 'no' if x == 0 else 'yes')
+    df3['increase_basement'] = df3[['basement', 'price']].apply(lambda x: 0.50 * x['price'] if x['basement'] else 0, axis=1)
+    df3['suggest_basement'] = df3['basement'].apply(lambda x: 'yes' if x == 'no' else 'no')
+
+    # bathrooms
+    df3['increase_bathrooms'] = df3[['bathrooms', 'price']].apply( lambda x: 0.40*x['price'] if x['bathrooms'] < 4 else 0, axis=1 )
+    df3['suggest_bathrooms'] = df3['bathrooms'].apply( lambda x: x+1 if x < 4 else x )
+
+    # bedrooms
+    df3['increase_bedrooms'] = df3[['bedrooms', 'price']].apply( lambda x: 0.25*x['price'] if x['bedrooms'] < 5 else 0, axis=1 )
+    df3['suggest_bedrooms'] = df3['bedrooms'].apply( lambda x: x+1 if x < 5 else x )
+
+    # final price
+    df3['final_increase'] = df3['increase_basement'] + df3['increase_bathrooms'] + df3['increase_bedrooms']
+    df3['final_price'] = df3['price'] + df3['final_increase']
+
+    df4 = df3[['id', 'final_price', 'suggest_basement', 'bathrooms', 'suggest_bathrooms', 'bedrooms', 'suggest_bedrooms']]
+
+    st.table( df4 )
+
+
 
     return None
 
@@ -547,7 +589,11 @@ if __name__ == '__main__':
     data = set_feature( data )
 
     # load
-    purchase_recommendations()
+    df = purchase_recommendations()
+
+    sell_recommendations(df)
+
+    refurbishment_suggests()
 
     insights()
 
