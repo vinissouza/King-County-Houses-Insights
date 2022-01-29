@@ -490,11 +490,12 @@ def purchase_recommendations():
 
     # select data
     cols = ['id', 'date', 'price', 'waterfront', 'condition', 'zipcode']
-    df = data['cols']
+    df = data[cols]
 
     # create season feature
     season = {1:'winter', 2:'winter', 3:'winter', 4:'summer', 5:'summer', 6:'summer',
               7:'summer', 8:'summer', 9:'summer', 10:'winter', 11:'winter', 12:'winter'}
+    df['date'] = pd.to_datetime(df['date'])
     df['season'] = df['date'].dt.month.map( season )
 
     aux2 = df[['season', 'price', 'zipcode']].groupby( ['zipcode', 'season'] ).mean().reset_index()
@@ -502,11 +503,20 @@ def purchase_recommendations():
     df1 = df.merge( aux2, on=['zipcode', 'season'] )
 
     df1['price_suggest'] = df1[['price', 'season_price']].apply(
-        lambda x: 1.1*x['price'] if ( x['price'] < x['mean_price'] ) &
-                                    ( x['condition'] > 3 ) &
-                                    ( x['waterfront'] == 1 ) else 'reject', axis=1 )
+        lambda x: 1.1*x['price'] if  x['price'] >= x['season_price'] else 1.3*x['price'], axis=1 )
 
-    aux = df[['price', 'zipcode']].groupby
+    aux = df[['price', 'zipcode']].groupby( 'zipcode' ).mean().reset_index()
+    aux.rename( columns={'price':'mean_price'}, inplace=True )
+    df = df.merge( aux, on='zipcode' )
+
+    df['status'] = df[['mean_price', 'price', 'condition', 'waterfront']].apply(
+        lambda x: 'accept' if ( x['price'] < x['mean_price'] ) &
+                              ( x['condition'] > 3 ) &
+                              ( x['waterfront'] == 1 ) else 'reject', axis=1 )
+
+    df = df[df['status'] == 'accept']
+
+    st.table( df )
 
     return None
 
@@ -537,6 +547,8 @@ if __name__ == '__main__':
     data = set_feature( data )
 
     # load
+    purchase_recommendations()
+
     insights()
 
     hypothesis()
