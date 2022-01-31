@@ -47,34 +47,106 @@ insights and better understand the impact of insights on the answers to business
 other people or services can use the results to improve their business decisions.
 
 ## Main Data Insights
-Hypothesis 01: Houses with a water view are 30% more expensive, in average.
+Considering the insight that brings the most value to the business, follow the result from data exploratory analysis.
 
-True/False:
+**Hypothesis 01:** Houses with a water view are **30%** more expensive, on average.
 
-Hypothesis 02: Houses with a construction date less than 1955 are 50% cheaper, in average.
+**False:** Houses with a water view are **300%** more expensive, on average.
 
-True/False:
+**Hypothesis 02**: Houses with a construction date less than 1955 are **50%** cheaper, in average.
 
-Hypothesis 03: Houses without a basement have a lot size 50% larger than those with a basement.
+**False:** The construction date has low influence on the price of houses.
 
-True/False:
+**Hypothesis 03:** Houses without a basement have a lot size **50%** larger than those with a basement.
 
-Hypothesis 04: The YoY (Year over Year) house price growth is 10%.
+**False:** Houses without a basement have a lot size around **20%** smaller than thoses with a basement.
 
-True/False:
+**Hypothesis 04:** The YoY (Year over Year) house price growth is **10%**.
 
-Hypothesis 05: Houses with 3 bathrooms have a MoM (Month over Month) growth of 15%.
+**False:** The YoY houses price growth is less than **1%**.
 
-True/False:
+**Hypothesis 05:** Houses with 3 bathrooms have a MoM (Month over Month) growth of **15%**.
+
+**False:** Number of bathrooms don't have relationship with time.
+
+### Hypothesis summary
+| Hypothesis | Results | Relevance |
+| ---------- | ------- | --------- |
+|     H1     |  False  |    High   |
+|     H2     |  False  |    Low    |
+|     H3     |  False  |   Medium  |
+|     H4     |  False  |    Low    |
+|     H5     |  False  |    Low    |
+
+
+
+More about the data exploratoty analysis can be check in 
+https://dashboard.heroku.com/apps/king-county-houses-analytics/resources
 
 ## Machine Learning Model Applied
+This project did not require a machine learning model.
 
 ## Machine Learning Model Performance
+No machine learning performance was achieved.
 
 ## Business Results
-
+- Validation of valuable insights for assist decision-making by business team.
+- Model to selection bests properties to be bought by company depending on following conditions
+choose by data orientation:
+  - Houses there are under the median price from region.
+  - Houses there are in good condition.
+  - Houses that have water view.
+- Model to determine a sell price aiming a 10-30% profit depending on following conditions:
+  - 10% increase price if the properties is over the median price from region and season.
+  - 30% increase price if the properties is under the median price from region and season.
+- Model to select best refurbishment options and determine the increase price resulted by them. 
+Options choose is:
+  - Basement
+  - Bathrooms
+  - Bedrooms
+  
 ## Conclusions
 
+This project has the goal to generate insights to assist the decision-make by business team by a 
+study and understanding of data about properties from King County Seattle. A additional study including
+price per size lot should be considered. A multivariate analysis show that most correlations with price are
+'sqft_living' and 'bathrroms' and shoulb considered in bought and refurbishment recommendations model.
+Others conclusions can be made after the data study:
+  - Properties that have pass for some renovate have 43% more value, on average.
+  - There are much more houses that have never pass by a renovation than renovated houses (no/yes: 20699/914).
+
+
 ## Lessons Learned
+1. Python data manipulation libraries: pandas, numpy.
+2. Python data visualization libraries: seaborn, matplotlib, plotly.express.
+3. Statistic libraries: scipy.stats.
+4. Git/Github.
+5. Crisp-DM methods.
+6. Documentation format.
+7. Data analysis fundamentals.
+8. ETl design.
+9. Hypothesis and insights.
 
 ## Next Steps
+1. Improvements to first-cycle-notebook or nexts:
+   1. Add conclusions on exploratory data analysis notebook.
+   2. Add seção com todas os tipos variaveis categoricas (var_cat.unique()) e explciar cada uma;
+   3. Add geopy.geocoders variables;
+   4. Add pickes for each notebook section;
+   5. Add data copy() for each notebook section;
+   6. Review following Ds em Produçao format;
+   7. Q&R section with CEO questions;
+   8. Hypothesis without percentage variables, only text;
+   9. Add hypothesis about seasons considering price and quantity of properties;
+   10. Add recommendations sections (buy, sell and refurbishment);
+   11. Considering all the attributes for multivariate analysis, with no data drop.
+   12. Categorical attributes show technical mistakes, code should be review.
+
+2. Apply dashboard improvements:
+    - Add github link in navigation bar;
+    - Upgrade to multipages for each section;
+    - Add map for each recommendation;
+
+3. Improvements in hypothesis:
+   - Hypothesis map;
+   - Hypothesis considering price by lot size;
