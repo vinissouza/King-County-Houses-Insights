@@ -47,25 +47,27 @@ insights and better understand the impact of insights on the answers to business
 other people or services can use the results to improve their business decisions.
 
 ## Main Data Insights
-Hypothesis 01: Houses with a water view are 30% more expensive, in average.
+Considering the insight that brings the most value to the business, follow the result from data exploratory analysis.
 
-True/False:
+**Hypothesis 01:** Houses with a water view are **30%** more expensive, on average.
 
-Hypothesis 02: Houses with a construction date less than 1955 are 50% cheaper, in average.
+**False:** Houses with a water view are **300%** more expensive, on average.
 
-True/False:
+**Hypothesis 02**: Houses with a construction date less than 1955 are **50%** cheaper, in average.
 
-Hypothesis 03: Houses without a basement have a lot size 50% larger than those with a basement.
+**False:** The construction date has low influence on the price of houses.
 
-True/False:
+**Hypothesis 03:** Houses without a basement have a lot size **50%** larger than those with a basement.
 
-Hypothesis 04: The YoY (Year over Year) house price growth is 10%.
+**False:** Houses without a basement have a lot size around **20%** smaller than thoses with a basement.
 
-True/False:
+**Hypothesis 04:** The YoY (Year over Year) house price growth is **10%**.
 
-Hypothesis 05: Houses with 3 bathrooms have a MoM (Month over Month) growth of 15%.
+**False:** The YoY houses price growth is less than **1%**.
 
-True/False:
+**Hypothesis 05:** Houses with 3 bathrooms have a MoM (Month over Month) growth of **15%**.
+
+**False:** Number of bathrooms don't have relationship with time.
 
 ## Machine Learning Model Applied
 
