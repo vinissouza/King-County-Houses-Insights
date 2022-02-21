@@ -2,6 +2,9 @@
 
 Formulation and validation of hypothesis about housing market in King County, WA, through exploratory data analysis.
 
+<a href="https://king-county-houses-analytics.herokuapp.com/">
+  <img alt="Made by vinissouza" src="https://img.shields.io/badge/Acess%20Dashboard%20-Streamlit-%2304D361">
+</a>
 
 ## Business Problem
 House Rocket is a digital platform that uses technology to simplify the sale
@@ -22,7 +25,9 @@ suggestions for changes? What is the price increase given for each refurbishment
 option?
 
 All the context about this project is completely fictitious, including company, CEO 
-and business issues.
+and business issues. 
+
+This is a project provided by the DS community and can be access by this link https://sejaumdatascientist.com/os-5-projetos-de-data-science-que-fara-o-recrutador-olhar-para-voce/
 
 ## Business Assumptions
 The assumptions about the business problem is as follow:
@@ -80,8 +85,9 @@ Considering the insight that brings the most value to the business, follow the r
 
 
 
-More about the data exploratoty analysis can be check in 
-https://dashboard.heroku.com/apps/king-county-houses-analytics/resources
+More about the data exploratory analysis can be check in 
+<a href="https://github.com/vinissouza/King-County-Houses-Insights/blob/main/Notebooks/Feature-First-Cycle.ipynb">
+Feature First Cycle</a>
 
 ## Machine Learning Model Applied
 This project did not require a machine learning model.
@@ -115,6 +121,9 @@ Others conclusions can be made after the data study:
   - Properties that have pass for some renovate have 43% more value, on average.
   - There are much more houses that have never pass by a renovation than renovated houses (no/yes: 20699/914).
 
+The dashboard can be consulted by the link bellow:
+https://king-county-houses-analytics.herokuapp.com/
+
 
 ## Lessons Learned
 1. Python data manipulation libraries: pandas, numpy.
@@ -124,8 +133,10 @@ Others conclusions can be made after the data study:
 5. Crisp-DM methods.
 6. Documentation format.
 7. Data analysis fundamentals.
-8. ETl design.
+8. OOP fundamentals.
 9. Hypothesis and insights.
+10. Deploy model in Heroku
+11. multipage functionality of Streamlit
 
 ## Next Steps
 1. Improvements to first-cycle-notebook or nexts:
@@ -146,7 +157,15 @@ Others conclusions can be made after the data study:
     - Add github link in navigation bar;
     - Upgrade to multipages for each section;
     - Add map for each recommendation;
+      - Degign on ETl (POO)
 
 3. Improvements in hypothesis:
    - Hypothesis map;
    - Hypothesis considering price by lot size;
+
+4. Documentation inprovements:
+   - Add images in readme.
+   - Add dashboard link in conclusion.
+   - [ ] checkbox test
+   - [x] checked checkbox
+   
