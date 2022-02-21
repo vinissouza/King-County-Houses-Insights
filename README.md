@@ -2,6 +2,9 @@
 
 Formulation and validation of hypothesis about housing market in King County, WA, through exploratory data analysis.
 
+<a href="https://king-county-houses-analytics.herokuapp.com/">
+  <img alt="Made by vinissouza" src="https://img.shields.io/badge/Acess%20Dashboard%20-Streamlit-%2304D361">
+</a>
 
 ## Business Problem
 House Rocket is a digital platform that uses technology to simplify the sale
@@ -82,8 +85,9 @@ Considering the insight that brings the most value to the business, follow the r
 
 
 
-More about the data exploratoty analysis can be check in 
-https://king-county-houses-analytics.herokuapp.com/
+More about the data exploratory analysis can be check in 
+<a href="https://github.com/vinissouza/King-County-Houses-Insights/blob/main/Notebooks/Feature-First-Cycle.ipynb">
+Feature First Cycle</a>
 
 ## Machine Learning Model Applied
 This project did not require a machine learning model.
